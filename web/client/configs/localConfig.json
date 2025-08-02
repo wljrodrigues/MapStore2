@@ -252,6 +252,11 @@
       },
       "locales": {
         "supportedLocales": {
+   "pt": {
+            "code": "pt-PT",
+            "description": "Portugues"
+          },
+          
           "it": {
             "code": "it-IT",
             "description": "Italiano"
