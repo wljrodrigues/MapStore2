@@ -20,7 +20,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: geostore
     volumes:
-    - pg_data:${PGDATA:-/var/lib/postgresql/data}:rw
+      - pg_data:${PGDATA:-/var/lib/postgresql/data}:rw
     ports:
       - 5432
     networks:
@@ -30,15 +30,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        OVR: "geostore-datasource-ovr.properties"
-        MAPSTORE_WEBAPP_SRC: "https://github.com/geosolutions-it/MapStore2/releases/latest/download/mapstore.war"
+    args:
+      OVR: "geostore-datasource-ovr.properties"
+      MAPSTORE_WEBAPP_SRC: "https://github.com/geosolutions-it/MapStore2/releases/latest/download/mapstore.war"
     container_name: mapstore
     command: [ "wait-for-postgres", "postgres", "5432", "postgres", "postgres", "catalina.sh", "run" ]
     depends_on:
       - postgres
     ports:
-      - 8080
+      - "8080:8080"
     networks:
       - mapstore-network
 
@@ -56,4 +56,3 @@ services:
 
 volumes:
   pg_data:
-
