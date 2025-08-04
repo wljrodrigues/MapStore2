@@ -24,7 +24,7 @@ ENV JAVA_OPTS="${JAVA_OPTS} ${GEOSTORE_OVR_OPT} -Ddatadir.location=${DATA_DIR}"
 ENV TERM xterm
 
 COPY --from=mother "/mapstore/mapstore.war" "${MAPSTORE_WEBAPP_DST}/mapstore.war"
-COPY --from=mother "/mapstore/docker" "${CATALINA_BASE}/docker/"
+#COPY --from=mother "/mapstore/docker" "${CATALINA_BASE}/docker/"
 
 COPY binary/tomcat/conf/server.xml "${CATALINA_BASE}/conf/"
 RUN sed -i -e 's/8082/8080/g' ${CATALINA_BASE}/conf/server.xml
@@ -32,7 +32,7 @@ RUN sed -i -e 's/8082/8080/g' ${CATALINA_BASE}/conf/server.xml
 RUN mkdir -p ${DATA_DIR}
 
 
-RUN cp ${CATALINA_BASE}/docker/wait-for-postgres.sh /usr/bin/wait-for-postgres
+#RUN cp ${CATALINA_BASE}/docker/wait-for-postgres.sh /usr/bin/wait-for-postgres
 
 RUN apt-get update \
     && apt-get install --yes postgresql-client \
