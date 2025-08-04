@@ -3,8 +3,6 @@ LABEL maintainer="Alessandro Parma<alessandro.parma@geosolutionsgroup.com>"
 ARG MAPSTORE_WEBAPP_SRC="https://github.com/geosolutions-it/MapStore2/releases/latest/download/mapstore.war"
 ADD "${MAPSTORE_WEBAPP_SRC}" "/mapstore/"
 
-COPY web/target/mapstore.war ${CATALINA_BASE}/webapps/mapstore.war
-
 WORKDIR /mapstore
 
 FROM tomcat:9-jdk11
